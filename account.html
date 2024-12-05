@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Pet System</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="account.css"> <!-- Link to the account CSS -->
+</head>
+<body>
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="admin.html">Pets Management</a>
+                <ul>
+                    <li><a href="admin.html">View All Pets</a></li>
+                    <li><a href="History">History</a></li>
+                </ul>
+            </li>
+            <li><a href="#owners-management">Owners Management</a>
+                <ul>
+            </li>
+            <li><a href="appointment.html">Appointments</a>
+                <ul>
+                    <li><a href="#view-all-appointments">View All Appointments</a></li>
+                    <li><a href="appointment.html">Schedule New Appointment</a></li>
+                </ul>
+            </li>
+            <li><a href="medical.html">Medical Records</a>
+                <ul>
+                    <li><a href="var.html">View All Records</a></li>
+                </ul>
+            </li>
+            <li><a href="#user-management">User Management</a>
+                <ul>
+                    <li><a href="#view-all-users">View All Users</a></li>
+                    <li><a href="#add-new-user">Add New User</a></li>
+                </ul>
+            </li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="#logout" onclick="logout()">Logout</a></li> <!-- Logout link -->
+        </ul>
+    </nav>
+
+    <div class="account-container">
+        <h1>Manage Account</h1>
+        <div class="form-group">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name">
+        </div>
+
+        <div class="form-group">
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone">
+        </div>
+
+        <div class="form-group">
+            <label for="work">Position:</label>
+            <input type="text" id="work">
+        </div>
+
+        <div class="btn-container">
+            <input type="button" value="Update Account" onclick="updateAccount()">
+            <input type="button" class="delete" value="Delete Account" onclick="deleteAccount()">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loggedInUser = JSON.parse(localStorage.getItem('user'));
+
+            if (!loggedInUser) {
+                alert('You must be logged in to access this page.');
+                window.location.href = 'login.html';
+            }
+
+            document.getElementById('first-name').value = loggedInUser.firstName;
+            document.getElementById('last-name').value = loggedInUser.lastName;
+            document.getElementById('email').value = loggedInUser.email;
+            document.getElementById('phone').value = loggedInUser.phone;
+            document.getElementById('work').value = loggedInUser.work;
+        });
+
+        function updateAccount() {
+            const username = JSON.parse(localStorage.getItem('user')).username;
+
+            const updatedUser = {
+                username: username,
+                password: JSON.parse(localStorage.getItem(username)).password, // Keep the same password
+                firstName: document.getElementById('first-name').value,
+                lastName: document.getElementById('last-name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                work: document.getElementById('work').value
+            };
+
+            localStorage.setItem(username, JSON.stringify(updatedUser));
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+            alert("Account updated successfully!");
+        }
+
+        function deleteAccount() {
+            const username = JSON.parse(localStorage.getItem('user')).username;
+            localStorage.removeItem(username);
+            localStorage.removeItem('user');
+            localStorage.removeItem('loggedIn');
+            alert("Account deleted successfully.");
+            window.location.href = "sign.html";
+        }
+    </script>
+
+<script>
+    function logout() {
+        localStorage.removeItem('user'); // Clear user data
+        localStorage.removeItem('loggedIn'); // Optionally clear loggedIn status
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+</script>
+
+</body>
+</html>
+

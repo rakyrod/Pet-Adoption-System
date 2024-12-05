@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Pet System</title>
+    <link rel="stylesheet" href="admin.css"> <!-- Admin CSS -->
+</head>
+<body>
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="admin.html">Pets Management</a>
+                <ul>
+                    <li><a href="admin.html">View All Pets</a></li>
+                    <li><a href="History">History</a></li>
+                </ul>
+            </li>
+            <li><a href="#owners-management">Owners Management</a>
+                <ul>
+            </ul>
+            </li>
+            <li><a href="appointment.html">Appointments</a>
+                <ul>
+                    <li><a href="#view-all-appointments">View All Appointments</a></li>
+                    <li><a href="appointment.html">Schedule New Appointment</a></li>
+                </ul>
+            </li>
+            <li><a href="medical.html">Medical Records</a>
+                <ul>
+                    <li><a href="var.html">View All Records</a></li>
+                </ul>
+            </li>
+            <li><a href="#user-management">User Management</a>
+                <ul>
+                    <li><a href="#view-all-users">View All Users</a></li>
+                    <li><a href="#add-new-user">Add New User</a></li>
+                </ul>
+            </li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="#logout" onclick="logout()">Logout</a></li> <!-- Logout link -->
+        </ul>
+    </nav>
+
+    <main>
+        <section class="info">
+            <h2>Pet Management</h2>
+        </section>
+
+        <div class="pets-container" id="petsContainer">
+            <div class="pet">
+                <img src="/path/to/minggy.jpg" alt="Minggy" class="interactive-image">
+                <p class="pets-name">Minggy</p>
+            </div>
+            <div class="pet">
+                <img src="/path/to/stewart.jpg" alt="Stewart" class="interactive-image">
+                <p class="pets-name">Stewart</p>
+            </div>
+            <div class="pet">
+                <img src="/path/to/troy.jpg" alt="Troy" class="interactive-image">
+                <p class="pets-name">Troy</p>
+            </div>
+            <div class="pet">
+                <img src="/path/to/luffy.jpg" alt="Luffy" class="interactive-image">
+                <p class="pets-name">Luffy</p>
+            </div>
+        </div>
+
+        <!-- Add Pet Button -->
+        <button class="add-pet-btn" onclick="openModal()"> + </button>
+
+        <!-- The Modal Structure -->
+        <div id="addPetModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add a New Pet</h2>
+
+                <!-- Form inside the modal -->
+                <form>
+                    <div class="form-group">
+                        <label for="petName">Pet Name:</label>
+                        <input type="text" id="petName" placeholder="Enter pet's name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="petImage">Pet Image URL:</label>
+                        <input type="text" id="petImage" placeholder="Enter image URL">
+                    </div>
+
+                    <!-- Buttons inside the modal -->
+                    <div class="modal-actions">
+                        <button type="button" class="add-btn">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('user'); // Clear user data
+            localStorage.removeItem('loggedIn'); // Optionally clear loggedIn status
+            window.location.href = 'login.html'; // Redirect to login page
+        }
+    </script>
+    
+</body>
+</html>
+

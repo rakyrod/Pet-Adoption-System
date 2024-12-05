@@ -1,0 +1,147 @@
+main {
+    margin-left: 250px;
+    padding-top: 5%;
+    width: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    border-bottom: 1px solid #34495e;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #34495e;
+}
+
+.sidebar ul li ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.sidebar ul li ul li {
+    padding: 10px;
+    border: none;
+}
+
+.sidebar ul li ul li a:hover {
+    background-color: #3b4c5a;
+}
+
+.info {
+    text-align: center;
+    margin: 50px;
+}
+
+.info h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.medical-record-form {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form fieldset {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+form legend {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="tel"],
+form input[type="email"],
+form input[type="date"],
+form input[type="file"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.form-buttons {
+    text-align: center;
+}
+
+.form-buttons button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-buttons button:hover {
+    background-color: #45a049;
+}
+
+

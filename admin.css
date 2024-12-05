@@ -1,0 +1,203 @@
+/* admin.css */
+main {
+    margin-left: 250px;
+    padding-top: 5%;
+    width: 100%;
+}
+
+.pets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.pet {
+    text-align: center;
+    padding: 20px;
+}
+
+.pet img {
+    width: 200px;
+    height: auto;
+    border-radius: 15px;
+}
+
+.cats-name, .dogs-name {
+    margin-top: 10px;
+    font-size: 17px;    
+    color: #604242; 
+
+}
+
+.cats-name{
+    font-size: 20px;
+    color: #604242;
+}
+.dogs-name {
+    font-size: 2px;
+
+}
+
+.interactive-image {
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.interactive-image:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    border-bottom: 1px solid #34495e;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #34495e;
+}
+
+.info {
+    text-align: center;
+    margin: 70px;
+}
+
+.info h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    margin-bottom: 0px;
+}
+
+.pets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.pet {
+    text-align: center;
+    padding: 20px;
+}
+
+.pet img {
+    width: 200px;
+    height: auto;
+    border-radius: 15px;
+}
+
+.pets-name {
+    margin-top: 10px;
+    font-size: 17px;
+    color: #604242;
+}
+
+/* Add button style */
+.add-pet-btn {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: green;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-pet-btn:hover {
+    background-color: darkgreen;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 460px;
+    border-radius: 10px;
+}
+
+.close {
+    float: right;
+    font-size: 29px;
+    cursor: pointer;
+}
+
+/* Form alignment */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-right: 10px;
+    flex-basis: 30%;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.modal-actions {
+    text-align: right;
+}
+
+.add-btn {
+    padding: 8px 16px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Medical Records - Admin Pet System</title>
+    <link rel="stylesheet" href="medical.css">
+    <link rel="stylesheet" href="var.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="admin.html">Pets Management</a>
+                <ul>
+                    <li><a href="#view-all-pets">View All Pets</a></li>
+                </ul>
+            </li>
+            <li><a href="#owners-management">Owners Management</a>
+                <ul>
+                    <li><a href="#view-all-owners">View All Owners</a></li>                   
+                </ul>
+            </li>
+            <li><a href="appointment.html">Appointments</a>
+                <ul>
+                    <li><a href="#view-all-appointments">View All Appointments</a></li>
+                    <li><a href="appointment.html">Schedule New Appointment</a></li>
+                </ul>
+            </li>
+            <li><a href="medical.html">Medical Records</a>
+                <ul>
+                    <li><a href="var.html">View All Records</a></li>
+                </ul>
+            </li>
+            <li><a href="#user-management">User Management</a>
+                <ul>
+                    <li><a href="#view-all-users">View All Users</a></li>
+                    <li><a href="#add-new-user">Add New User</a></li>
+                </ul>
+            </li>
+            <li><a href="#reports">Reports</a>
+                <ul>
+                    <li><a href="#view-reports">View Reports</a></li>
+                </ul>
+            </li>
+            <li><a href="#logout" onclick="logout()">Logout</a></li> <!-- Logout link -->
+        </ul>
+    </nav>
+
+    <main>
+        <section class="info">
+            <h2>All Medical Records</h2>
+        </section>
+
+        <!-- View All Records Section -->
+        <section id="var.html">
+            <h3>All Medical Records</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pet Name</th>
+                        <th>Age</th>
+                        <th>Breed</th>
+                        <th>Gender</th>
+                        <th>Owner Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>address</th>
+                        <th>address2</th>
+                        <th>city</th>
+                        <th>state</th>
+                        <th>postal</th>
+                        <th>Allergies</th>
+                        <th>Existing Conditions</th>
+                        <th>Veterinarian</th>
+                        <th>Pet Image</th>
+                        <th>Immunization History</th>
+                        <th>Medical History</th>
+                        <th>Actions</th> <!-- New column for delete button -->
+                    </tr>
+                </thead>
+                <tbody id="records-table-body">
+                    <!-- Medical records will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Button to download the records -->
+        <div class="download-btn">
+            <button id="saveRecordsBtn">Download Records</button>
+        </div>
+    </main>
+
+    <script>
+        // Function to load records from localStorage
+        function loadRecords() {
+            const recordsTableBody = document.getElementById("records-table-body");
+
+            // Get records from localStorage
+            let records = JSON.parse(localStorage.getItem("medicalRecords")) || [];
+
+            // Clear the current table body content
+            recordsTableBody.innerHTML = '';
+
+            // Loop through records and display them
+            records.forEach((record, index) => {
+                const newRow = document.createElement("tr");
+
+                let immunizationHistory = '';
+                if (record.immunizationHistory) {
+                    for (const [vaccine, years] of Object.entries(record.immunizationHistory)) {
+                        immunizationHistory += `${vaccine}: ${years.join(', ')} years<br>`;
+                    }
+                }
+
+                newRow.innerHTML = `
+                    <td>${record.petName}</td>
+                    <td>${record.petAge}</td>
+                    <td>${record.breed}</td>
+                    <td>${record.gender}</td>
+                    <td>${record.ownerName}</td>
+                    <td>${record.phone}</td>
+                    <td>${record.email}</td>
+                    <td>${record.address}</td>
+                    <td>${record.address2}</td>
+                    <td>${record.city}</td>
+                    <td>${record.state}</td>
+                    <td>${record.postal}</td>
+                    <td>${record.allergies}</td>
+                    <td>${record.conditions}</td>
+                    <td>${record.veterinarian}</td>
+                    <td><img src="${record.petImage}" alt="Pet Image" style="width: 100px; height: 100px;"></td>
+                    <td>${immunizationHistory}</td>
+                    <td>${record.medicalHistory}</td>
+                    <td>
+                        <button onclick="deleteRecord(${index})">Delete</button>
+                    </td>
+                `;
+                recordsTableBody.appendChild(newRow);
+            });
+        }
+
+        // Function to delete a record
+        function deleteRecord(index) {
+            let records = JSON.parse(localStorage.getItem("medicalRecords")) || [];
+            records.splice(index, 1); // Remove the record at the given index
+            localStorage.setItem("medicalRecords", JSON.stringify(records)); // Save the updated records to localStorage
+            loadRecords(); // Reload the records table
+        }
+
+        // Function to download the records as a JSON file
+        function downloadRecordsAsPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            let records = JSON.parse(localStorage.getItem("medicalRecords")) || [];
+
+            let y = 10; // Y-axis start position
+
+            doc.setFontSize(12);
+            doc.text('Medical Records - Admin Pet System', 10, y);
+            y += 10;
+
+            records.forEach((record, index) => {
+                let immunizationHistory = '';
+                if (record.immunizationHistory) {
+                    for (const [vaccine, years] of Object.entries(record.immunizationHistory)) {
+                        immunizationHistory += `${vaccine}: ${years.join(', ')} years\n`;
+                    }
+                }
+
+                const recordText = `
+                Record ${index + 1}:
+                Pet Name: ${record.petName}
+                Pet Age: ${record.petAge}
+                Breed: ${record.breed}
+                Gender: ${record.gender}
+                Owner Name: ${record.ownerName}
+                Phone: ${record.phone}
+                Email: ${record.email}
+                Address: ${record.address}
+                Address 2: ${record.address2}
+                City: ${record.city}
+                State: ${record.state}
+                Postal: ${record.postal}
+                Allergies: ${record.allergies}
+                Existing Conditions: ${record.conditions}
+                Veterinarian: ${record.veterinarian}
+                Immunization History: ${immunizationHistory}
+                Medical History: ${record.medicalHistory}
+                `;
+
+                doc.text(recordText, 10, y);
+                y += 50;
+
+                if (record.petImage) {
+            const imgWidth = 50;
+            const imgHeight = 50; // Adjust the image size as needed
+            doc.addImage(record.petImage, 'JPEG', 150, y - 45, imgWidth, imgHeight); // Position the image to the right
+            y += 60; // Adjust the Y position for the next record
+        }
+
+                if (y >= 280) {
+                    doc.addPage();
+                    y = 10;
+                }
+            });
+
+            doc.save('medical_records.pdf');
+        }
+
+        // Add event listener to the save button to download the records as a PDF
+        document.getElementById("saveRecordsBtn").addEventListener("click", downloadRecordsAsPDF);
+
+        // Load records when the page is loaded
+        document.addEventListener("DOMContentLoaded", loadRecords);
+    </script>
+<script>
+    function logout() {
+        localStorage.removeItem('user'); // Clear user data
+        localStorage.removeItem('loggedIn'); // Optionally clear loggedIn status
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+</script>
+
+</body>
+</html>

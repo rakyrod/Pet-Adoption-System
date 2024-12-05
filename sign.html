@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); 
+            box-shadow: 0px 0px 10px 0px #00000020;
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input[type="submit"], .save-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #218838;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover, .save-btn:hover {
+            background-color: #759a7e;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="submit"] {
+                padding: 12px;
+            }
+        }
+    </style>
+     <script>
+        function handleSignup(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const agreeTerms = document.getElementById('agree').checked;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please try again.");
+                return;
+            }
+
+            if (!agreeTerms) {
+                alert("You must agree to the terms and conditions.");
+                return;
+            }
+
+            const user = {
+                username: username,
+                password: password,
+                firstName: document.getElementById('signup-first-name').value,
+                lastName: document.getElementById('signup-last-name').value,
+                email: document.getElementById('signup-email').value,
+                phone: document.getElementById('signup-phone').value,
+                work: document.getElementById('signup-work').value,
+            };
+
+            localStorage.setItem(username, JSON.stringify(user));
+
+            alert("Account created successfully! Redirecting to login page...");
+            window.location.href = "login.html"; // Redirect to login page after signup
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Sign Up</h1>
+        <form id="signup-form" onsubmit="handleSignup(event)">
+            <label for="signup-first-name">First Name:</label>
+            <input type="text" id="signup-first-name" required>
+
+            <label for="signup-last-name">Last Name:</label>
+            <input type="text" id="signup-last-name" required>
+
+            <label for="signup-email">Email:</label>
+            <input type="email" id="signup-email" required>
+
+            <label for="signup-phone">Phone Number:</label>
+            <input type="tel" id="signup-phone" required>
+
+            <label for="signup-work">Position:</label>
+            <input type="text" id="signup-work" required>
+
+            <label for="signup-username">Username:</label>
+            <input type="text" id="signup-username" required>
+
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" required>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" required>
+
+            <div>
+                <input type="checkbox" id="agree" required> I agree to the <a href="#">terms and conditions</a>.
+            </div>
+
+            <input type="submit" value="Create Account">
+        </form>
+        <p>Already have an account? <a href="login.html">Log in here</a></p> <!-- Link to login page -->
+    </div>
+</body>
+</html>

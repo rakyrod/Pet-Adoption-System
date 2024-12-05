@@ -1,0 +1,232 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav{
+    background-color:#89ad1a ;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.logo{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(60, 71, 50);
+    }
+.nav-items a{
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 13px;
+    color: white;
+    font-size:18px;
+    margin-left: 1px;
+}
+.nav-items a:hover{
+    background-color:rgb(60, 71, 50);; 
+    color: white;
+}
+.nav-items a{
+    color: white;
+    padding: 0px;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.1s;
+}
+.info-pets{
+    text-align: center;
+    margin: 70px;
+}
+.info-pets h2{
+    font-size: 30px;
+    line-height: 50px;
+    margin-bottom:0px;
+}
+.info-pets p {
+    font-size: 19px;
+    color:#604242 ;
+    line-height: 1.9;
+    margin: 0 auto;
+    max-width: 400px;
+}
+.footer-container {
+    background-color: #89ad1a;
+    width: 100%;
+    padding: 30px;
+    color:rgb(60, 71, 50);
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.footer-nav {
+    flex: 1;
+    min-width: 0px;
+    margin: 0 10px;
+}
+.footer-nav h3 {
+    margin-bottom: 10px;
+}
+.footer-nav p{
+    margin-bottom: 20px;
+}
+.footer-bottom{
+    text-align: center;
+    margin-top: 0px;
+    
+}
+.logo-footer{
+    font-size: 23px;
+    font-weight: bold;
+}
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.row a {
+    text-decoration: none;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 50%;
+}
+
+.row i {
+    font-size: 2em;
+    color: white;
+    opacity: 0.9;
+}
+
+.row a:hover {
+    background-color: rgb(29, 16, 16);
+    transition: 0.4s;
+}
+.nav-items a {
+color: white; 
+padding: 10px;
+text-decoration: none; 
+transition: background-color 0.2s, color 0.1s; 
+}
+.nav-items a:hover {
+background-color: rgb(60, 71, 50);;
+color: white;
+}
+.info-pets{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    
+    
+}
+    .pets-images{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 100px;
+        margin-bottom: 5%;
+    }
+    .cats{
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        
+    }
+    .dogs{
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding-bottom:1%;
+    }
+    .first-cat, .second-cat, .third-cat, .fourth-dog, .fifth-dog {
+        width: 85%;
+        max-width: 280px;
+        border-radius: 20%;
+    }
+    .pets-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px; 
+        margin-bottom: 21px; 
+    }
+    
+    .pet {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+    }
+    
+    .pet img {
+        width: 200px; 
+        border-radius: 15px;
+    }
+    
+    .cats-name, .dogs-name {
+        margin-top: 10px;
+        font-size: 20px;    
+        color: #604242; 
+
+    }
+    
+    .cats-name{
+        font-size: 23px;
+        color: #604242;
+    }
+    .dogs-name {
+        font-size: 23px;
+    }
+    .interactive-image {
+        width: 300px;
+        transition: transform 0.3s ease;
+    }
+    
+    .interactive-image:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Modal content */
+    .modal-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 500px;
+    }
+    
+    /* Close button */
+    .close {
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+    
+    

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale =1.0">
+    <title>Schedule New Appointment</title>
+    <link rel="stylesheet" href="appointment.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="admin.html">Pets Management</a>
+                <ul>
+                    <li><a href="admin.html">View All Pets</a></li>
+                </ul>
+            </li>
+            <li><a href="#owners-management">Owners Management</a>
+                <ul>
+                    <li><a href="#view-all-owners">View All Owners</a></li>                   
+                </ul>
+            </li>
+            <li><a href="appointment.html">Appointments</a>
+                <ul>
+                    <li><a href="#view-all-appointments">View All Appointments</a></li>
+                    <li><a href="appointment.html">Schedule New Appointment</a></li>
+                </ul>
+            </li>
+            <li><a href="medical.html">Medical Records</a>
+                <ul>
+                    <li><a href="var.html">View All Records</a></li>
+                </ul>
+            </li>
+            <li><a href="#user-management">User Management</a>
+                <ul>
+                    <li><a href="#view-all-users">View All Users</a></li>
+                    <li><a href="#add-new-user">Add New User</a></li>
+                </ul>
+            </li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="#logout" onclick="logout()">Logout</a></li> <!-- Logout link -->
+        </ul>
+    </nav>
+
+    <main>
+        <section class="info">
+            <h2>Schedule New Appointment</h2>
+        </section>
+
+        <section class="Appointment-Schedule-form">
+            <form>
+                <fieldset>
+                    <legend>Appointment Schedule</legend>
+                    <label for="name">First Name</label>
+                    <input type="text" id="first-name" name="first-name"placeholder="Enter your first name">
+                    <label for="name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name"placeholder="Enter your fast name">
+                    <label for="name">Email</label>
+                    <input type="text" id="email" name="email"placeholder="Enter your email">
+                    <label for="name">Phone Number</label>
+                    <input type="text" id="phone-number" name="phone-number"placeholder="Enter your phone number">
+                    <label for="name">Work</label>
+                    <input type="text" id="work" name="work"placeholder="Enter your work">
+                    <label for="name">Date</label>
+                    <input type="text" id="date" name="date"placeholder="DD/MM/YYYY">
+                    <label for="name">Time</label>
+                    <input type="text" id="time" name="time"placeholder="11:00 AM">
+                </fieldset>
+                <fieldset>
+                <legend>Desired Pet</legend>
+                        <label for="name">Name</label>
+                        <input type="text" id="pet-name" name="pet-name"placeholder="Enter the name of the pet you desire to adopt">
+                        <label for="name">Type</label>
+                        <input type="text" id="pet-type" name="pet-type"placeholder="Cat or Dog">
+                 </fieldset>
+                <div class="form-buttons">
+                    <button type="submit">Submit</button>
+                    <button type="reset">Clear Form</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('user'); // Clear user data
+            localStorage.removeItem('loggedIn'); // Optionally clear loggedIn status
+            window.location.href = 'login.html'; // Redirect to login page
+        }
+    </script>
+</body>
+</html>

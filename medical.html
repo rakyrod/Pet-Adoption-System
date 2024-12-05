@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records - Admin Pet System</title>
+    <link rel="stylesheet" href="medical.css">
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="admin.html">Pets Management</a>
+                <ul>
+                    <li><a href="#view-all-pets">View All Pets</a></li>
+                </ul>
+            </li>
+            <li><a href="#owners-management">Owners Management</a>
+                <ul>
+                    <li><a href="#view-all-owners">View All Owners</a></li>                   
+                </ul>
+            </li>
+            <li><a href="appointment.html">Appointments</a>
+                <ul>
+                    <li><a href="#view-all-appointments">View All Appointments</a></li>
+                    <li><a href="#schedule-new-appointment">Schedule New Appointment</a></li>
+                </ul>
+            </li>
+            <li><a href="medical.html">Medical Records</a>
+                <ul>
+                    <li><a href="var.html">View All Records</a></li>
+                </ul>
+            </li>
+            <li><a href="#user-management">User Management</a>
+                <ul>
+                    <li><a href="#view-all-users">View All Users</a></li>
+                    <li><a href="#add-new-user">Add New User</a></li>
+                </ul>
+            </li>
+            <li><a href="#reports">Reports</a>
+                <ul>
+                    <li><a href="#view-reports">View Reports</a></li>
+                </ul>
+            </li>
+            <li><a href="#logout" onclick="logout()">Logout</a></li> <!-- Logout link -->
+        </ul>
+    </nav>
+
+    
+    
+    <main>
+        <section class="info">
+            <h2>Medical Records</h2>
+        </section>
+
+        <!-- Pet Health Record Form -->
+        <section class="medical-record-form">
+            <form id ="medical-record-form">
+                <fieldset>
+                    <legend>Pet Information</legend>
+                    <label for="pet-name">Pet Name</label>
+                    <input type="text" id="pet-name" name="pet-name">
+                    
+                    <label for="pet-age">Pet Age</label>
+                    <input type="text" id="pet-age" name="pet-age">
+
+                    <label for="birth-date">Birth Date</label>
+                    <input type="date" id="birth-date" name="birth-date">
+
+                    <label for="breed">Breed</label>
+                    <input type="text" id="breed" name="breed">
+
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+
+                    <label for="weight">Weight</label>
+                    <input type="text" id="weight" name="weight">
+
+                    <label for="color">Color</label>
+                    <input type="text" id="color" name="color">
+
+                    <label for="allergies">Allergies</label>
+                    <input type="text" id="allergies" name="allergies">
+
+                    <label for="conditions">Existing Conditions</label>
+                    <textarea id="conditions" name="conditions"></textarea>
+
+                    <label for="veterinarian">Veterinarian</label>
+                    <input type="text" id="veterinarian" name="veterinarian">
+
+                    <label for="pet-image">Pet Image</label>
+                    <input type="file" id="pet-image" name="pet-image">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Owner's Information</legend>
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name">
+
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name">
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Area Code - Phone Number">
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@example.com">
+
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Street Address">
+                    <input type="text" id="address2" name="address2" placeholder="Street Address Line 2">
+                    <input type="text" id="city" name="city" placeholder="City">
+                    <input type="text" id="state" name="state" placeholder="State / Province">
+                    <input type="text" id="postal" name="postal" placeholder="Postal / Zip Code">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Immunization History</legend>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Rabies</th>
+                                <th>DHPP</th>
+                                <th>Lyme</th>
+                                <th>Bordatella</th>
+                                <th>Lepto</th>
+                                <th>Influenza</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Year rows -->
+                            <tr>
+                                <td>1 year</td>
+                                <td><input type="checkbox" name="rabies1"></td>
+                                <td><input type="checkbox" name="dhpp1"></td>
+                                <td><input type="checkbox" name="lyme1"></td>
+                                <td><input type="checkbox" name="bordatella1"></td>
+                                <td><input type="checkbox" name="lepto1"></td>
+                                <td><input type="checkbox" name="influenza1"></td>
+                            </tr>
+                            <!-- Add more years as needed -->
+                        </tbody>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Medical History</legend>
+                    <textarea id="medical-history" name="medical-history"></textarea>
+                </fieldset>
+
+                <div class="form-buttons">
+                    <button type="submit">Submit</button>
+                    <button type="reset">Clear Form</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById("medical-record-form");
+
+        if (form) {
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                // Gather form data
+                const petName = document.getElementById("pet-name").value;
+                const petAge = document.getElementById("pet-age").value;
+                const breed = document.getElementById("breed").value;
+                const gender = document.getElementById("gender").value;
+                const allergies = document.getElementById("allergies").value;
+                const conditions = document.getElementById("conditions").value;
+                const veterinarian = document.getElementById("veterinarian").value;
+                const petImageInput = document.getElementById("pet-image");
+                const ownerFirstName = document.getElementById("first-name").value;
+                const ownerLastName = document.getElementById("last-name").value;
+                const phone = document.getElementById("phone").value;
+                const email = document.getElementById("email").value;
+                const address = document.getElementById("address").value;
+                const address2 = document.getElementById("address2").value;
+                const city = document.getElementById("city").value;
+                const state = document.getElementById("state").value;
+                const postal = document.getElementById("postal").value;
+                const medicalHistory = document.getElementById("medical-history").value;
+            
+
+
+                const immunizationHistory = {
+                        rabies: document.querySelector('input[name="rabies1"]').checked ? [1] : [],
+                        dhpp: document.querySelector('input[name="dhpp1"]').checked ? [1] : [],
+                        lyme: document.querySelector('input[name="lyme1"]').checked ? [1] : [],
+                        bordatella: document.querySelector('input[name="bordatella1"]').checked ? [1] : [],
+                        lepto: document.querySelector('input[name="lepto1"]').checked ? [1] : [],
+                        influenza: document.querySelector('input[name="influenza1"]').checked ? [1] : []
+                };
+
+                let petImage = '';
+                    if (petImageInput.files.length > 0) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            petImage = e.target.result;
+                            saveRecord();
+                        };
+                        reader.readAsDataURL(petImageInput.files[0]);
+                    } else {
+                        saveRecord();
+                    }
+
+                // Save the record to localStorage
+                function saveRecord() {
+
+                // Create a record object
+                const newRecord = {
+                    petName,
+                    petAge,
+                    breed,
+                    gender,
+                    allergies,
+                    conditions,
+                    veterinarian,
+                    petImage,
+                    ownerName: `${ownerFirstName} ${ownerLastName}`,
+                    phone,
+                    email,
+                    address,
+                    address2,
+                    city,
+                    state,
+                    postal,
+                    immunizationHistory,
+                    medicalHistory
+                };
+
+                // Get existing records from localStorage, or create an empty array if none exist
+                let records = JSON.parse(localStorage.getItem("medicalRecords")) || [];
+
+                // Add the new record to the array
+                records.push(newRecord);
+
+                // Save the updated array back to localStorage
+                localStorage.setItem("medicalRecords", JSON.stringify(records));
+
+                // Reset the form
+                form.reset();
+
+                // Optionally, redirect to "View All Records" page
+                window.location.href = "var.html";
+            
+               }
+
+            });
+        } else {
+            console.error("Form not found!");
+        }
+    });
+
+</script>
+
+<script>
+    function logout() {
+        localStorage.removeItem('user'); // Clear user data
+        localStorage.removeItem('loggedIn'); // Optionally clear loggedIn status
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+</script>
+</body>
+</html>
